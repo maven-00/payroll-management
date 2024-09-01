@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Inter Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100&display=swap" rel="stylesheet">
+    
+    <!-- CSS Link-->
+    <link rel="stylesheet" type = "text/css" href="location-setup.component.css">
+
+    <!-- Icon Link -->
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
+    
+    
+    <title>BKHI Loaction Setup</title>
+    
+</head>
+<body class = "bg-transparent">    
+  <div class="container-fluid">
+    <h2>Location Setup</h2>
+      
+    <div class="position">
+      <!-- ------------------------------Header--------------------------------- -->
+      <div class="header row">
+        <ul class="nav nav-pills col-9" id="pills-tab" role="tablist">
+          <li (click)="locationSetupOnClick()" class="nav-tab" role="presentation">
+            <button class="nav-link" data-toggle="tab" href="#location-setup" type="button" role="tab" aria-controls="location-setup" aria-selected="true">List of Location</button>
+          </li>
+          <li class="nav-item">
+            <a><i class="headerIcons far fa-sync"></i></a>         
+          </li>
+          <li class="nav-item">
+            <a (click)="addOnClick()"><i class="headerIcons far fa-plus-square"></i></a>
+          </li>
+          <li class="nav-item">
+            <a><i class="headerIcons far fa-edit"></i></a>
+          </li>
+          <li class="nav-item">
+            <a><i class="headerIcons far fa-trash-alt"></i></a>
+          </li>
+          <li class="nav-item" type = "button" data-bs-toggle = "modal" data-bs-target = "#saveModal">
+            <a><i id="saveBtn" class="headerIcons far fa-save"></i></a>
+          </li>
+          <li class="nav-item" type = "button" data-bs-toggle = "modal" data-bs-target = "#deleteModal">
+            <a><i id="cancelBtn" class="headerIcons far fa-window-close"></i></a>
+          </li>
+        </ul>
+          <!----------------------------------SEARCHBAR-------------------------------------------------------------->
+          <div class="formHeaderDiv col-3">
+            <form class="d-flex">
+              <input class="searchFormHeader form-control me-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success" type="submit"><a><i class="fas fa-search"></i></a></button>
+            </form>
+          </div>
+
+          <!-- ---------------------------------MODAL-------------------------------------------------------------------->
+          <div class="modal" id="saveModal">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">BKHI Payroll System</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body d-flex justify-content-center">
+                  <a href=""><i class="fas fa-info-circle"></i></a>
+                  <p>Location Setup(s) successfully added.</p>
+                </div>
+                <div class="modal-footer">
+                  <button (click)="saveCancelOnClick()" class="btn-primary" type="button" data-bs-dismiss="modal">OK</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="modal" id="deleteModal">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">BKHI Payroll System</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body d-flex justify-content-center">
+                  <a href=""><i class="fas fa-info-circle"></i></a>
+                  <p>Are you sure you want to delete?</p>
+                </div>
+                <div class="modal-footer d-flex justify-content-around">
+                  <button (click)="saveCancelOnClick()" class="btn-primary" type="button" data-bs-dismiss="modal">Yes</button>
+                  <button class="btn-danger" type="button" data-bs-dismiss="modal">No</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- -------------MODAL END---------------->
+      </div>
+      
+      <!-- ------------------------------List of Location Table--------------------------------- -->
+      <div class="tab-content" id="pills-tabContent">
+
+        <div class="row">
+          <div class="leaveTypeContents tab-pane mx-2" id="location-setup" role="tabpanel" aria-labelledby="pills-home-tab">
+            <div class = "card bg-secondary w-50">
+              
+                <div class="tableDiv card-body table-responsive table-wrapper-scroll-y col-6">
+                  <table class="table table-striped table-dark table-hover text-center mx-auto">
+                    <thead class = "sticky-top">
+                      <tr>
+                        <th scope="col">Description</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let item of getReasonValue">
+                        <th scope = "row">{{item.name}}</th>
+                      </tr>
+                      
+                    </tbody>
+                  </table>
+                </div>
+            
+            </div>
+
+            <!--------------------------Details------------------------------------------------------------------>
+            <div class="formDiv col-6 mx-2">
+              <h5>Details</h5>
+              <form class="locationDetails d-flex" action="">
+                <label for="locationLabel">Location</label>
+                <input class="locationInput form-control me-2" type="search" placeholder="" aria-label="Search">
+              </form>
+            </div>
+          
+          </div>
+        </div>
+
+
+      </div>
+      
+    </div>
+  </div> 
+</body>
+
+</html>
